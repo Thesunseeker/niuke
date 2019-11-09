@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	int n , s;
+	long max;
+	while (cin >> n)
+	{
+		vector<int> v(3 * n);
+		for (int i = 0; i < 3 * n; i++)
+		{
+			cin >> s;
+			v[i] = s;
+		}
+		sort(v.begin(), v.end());
+		for (int i = n; i < 3 * n - 1; i += 2)
+		{
+			max = v[i] + max;
+		}
+		cout << max << endl;
+	}
+}
