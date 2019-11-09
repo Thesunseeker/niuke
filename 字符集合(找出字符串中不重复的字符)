@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main()
+{
+	string s1, s2;
+	
+	while (cin >> s1)
+	{
+		int arry[256] = { 0 };
+		for (auto &e : s1)
+		{
+			if (arry[e] == 0)
+			{
+				cout << e;
+				arry[e] = 1;
+			}
+		}
+		cout << endl;
+	}
+	return 0;
+}
