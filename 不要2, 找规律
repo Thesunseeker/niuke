@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	int w, h, ans;
+	cin >> w >> h;
+	if (w % 4 == 0 || h % 4 == 0)
+	{
+		ans = h * w / 2;
+	}
+	else if(w % 2 == 0 && h % 2 ==0)
+	{
+		ans = ((w * h) / 4 + 1) * 2;
+	}
+	else
+	{
+		ans = (w * h) / 2 + 1;
+	}
+	cout << ans << endl;
+	return 0;
+}
