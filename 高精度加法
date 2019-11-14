@@ -1,0 +1,12 @@
+char a[800] = { 0 }, b[202] = { 0 };
+	scanf("%s%s", a, b);
+	int alen = strlen(a), blen = strlen(b), t = 0, i;
+	int a1[202] = { 0 }, b1[202] = { 0 };
+	for (i = 0; i < alen; i++)    a1[i] = a[alen - 1 - i] - '0';
+	for (i = 0; i < blen; i++)    b1[i] = b[blen - 1 - i] - '0';
+	alen = (alen > blen) ? alen : blen;
+	for (i = 0; i <= alen; i++)
+		t = a1[i] + b1[i], a1[i] = t % 10, a1[i + 1] += t / 10;
+	while (!a1[i] && i) i--;
+	for (; i >= 0; i--) printf("%d", a1[i]);
+	return 0;
