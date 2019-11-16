@@ -1,0 +1,51 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using namespace std;
+//数学上的概率法
+int main()
+{
+	int m, n;
+	string s1;
+	string table = "0123456789ABCDEF";//从二进制到十六进制的集合
+	cin >> m >> n;
+	if (m == 0)
+		cout << "0" << endl;
+	while (m)
+	{
+		if (m < 0)
+		{
+			m = -m;
+			cout << "-";
+		}
+		s1 = table[m % n] + s1;
+		m /= n;
+	}
+	cout << s1 << endl;
+	return 0;
+}
+
+
+//递归方法
+ int totl(int n, int m){
+	if (n == 0 && m == 0){
+		return 0;
+	}
+	if (n == 0 || m == 0){
+		return 1;
+	}
+
+	return totl(n - 1, m) + totl(n, m - 1);
+}
+
+
+int main()
+{
+	int m , n;
+	while (cin >> n >> m)
+	{
+		cout << totl(m, n) << endl;
+	}
+	return 0;
+}
