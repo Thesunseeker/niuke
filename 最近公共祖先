@@ -1,0 +1,10 @@
+class LCA {
+public:
+    int getLCA(int a, int b) {
+        if (a == b)
+			return a;
+		return a > b ? getLCA(a / 2, b) : getLCA(a, b / 2);
+    }
+};
+
+因为题目将根节点设置成为了1, 又由于是满二叉树, 所以就有 根节点 = 子节点 / 2;
