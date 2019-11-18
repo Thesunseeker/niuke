@@ -1,0 +1,26 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using namespace std;
+int main()
+{
+	int m, n;
+	string s1;
+	string table = "0123456789ABCDEF";//从二进制到十六进制的集合
+	cin >> m >> n;
+	if (m == 0)
+		cout << "0" << endl;
+	while (m)
+	{
+		if (m < 0)
+		{
+			m = -m;
+			cout << "-";
+		}
+		s1 = table[m % n] + s1;
+		m /= n;
+	}
+	cout << s1 << endl;
+	return 0;
+}
