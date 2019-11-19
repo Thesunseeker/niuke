@@ -1,0 +1,74 @@
+int main()
+{
+	int sum = 0;
+	string s1;
+	while (cin >> s1)
+	{
+		if (s1.size() <= 4)
+			sum += 5;
+		else if (s1.size() >= 8)
+			sum += 25;
+		else
+			sum += 10;
+
+		int num = 0, num_count = 0, chr = 0, chr_count = 0, a = 0, A = 0;
+		for (const auto &ch : s1)
+		{
+			if (ch >= 'a' && ch <= 'z')
+				a = 1;
+			else if (ch >= 'A' && ch <= 'Z')
+				A = 1;
+			else if (isdigit(ch))
+			{
+				num = 1;
+				num++;
+			}
+			else
+			{
+				chr = 1;
+				chr_count++;
+			}
+		}
+
+		if (a == 1 && A == 1)
+			sum += 20;
+		else if ((a == 0 && A == 1) || (a == 1 && A == 0))
+			sum += 10;
+
+		if (num_count > 1)
+			sum += 20;
+		else if (num)
+			sum += 10;
+
+		if (chr_count > 1)
+			sum += 25;
+		else if (chr)
+			sum += 10;
+
+
+		if (A && a && num && chr)
+			sum += 5;
+		else if ((A || a) && num && chr)
+			sum += 3;
+		else if (num && (A || a))
+			sum += 2;
+
+		if (sum >= 90)
+			cout << "VERY_SECURE" << endl;
+		else if (sum >= 80)
+			cout << "SECURE" << endl;
+		else if (sum >= 70)
+			cout << "VERY_STRONG" << endl;
+		else if (sum >= 60)
+			cout << "STRONG" << endl;
+		else if (sum >= 50)
+			cout << "AVERAGE" << endl;
+		else if (sum >= 25)
+			cout << "WEAK" << endl;
+		else
+		{
+			cout << "VERY_WEAK" << endl;
+		}
+	}
+	return 0;
+}
