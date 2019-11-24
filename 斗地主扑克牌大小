@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	string strhand;
+	while (getline(cin, strhand))
+	{
+		if (strhand.find("joker JOKER") != -1)
+		{
+			cout << "joker JOKER" << endl;
+		}
+		else
+		{
+			int dash = strhand.find('-');
+			string s1 = strhand.substr(0, dash);
+			string s2 = strhand.substr(dash +1);
+			int c1 = count(s1.begin(), s1.end(), ' ');
+			int c2 = count(s2.begin(), s2.end(), ' ');
+			string firstS1 = s1.substr(0, s1.find(' '));
+			string firstS2 = s2.substr(0, s2.find(' '));
+			string str = "345678910JQKA2jokerJOKER";
+			if (c1 == c2)
+			{
+				if (str.find(firstS1) > str.find(firstS2))
+					cout << s1 << endl;
+				else
+					cout << s2 << endl;
+			}
+			else if (c1 == 3)
+				cout << s1 << endl;
+			else if (c2 == 3)
+				cout << s2 << endl;
+			else
+				cout << "ERROR" << endl;
+		}
+	}
+}
+//“输入每手牌可能是个子，对子，顺子（连续5张），三个，炸弹（四个）和对王中的一种，
+//不存在其他情况，由输入保证两手牌都是合法的，顺子已经从小到大排列“
+//这句规则让牌面类型的确定和大小的比较直接可以转换为牌个数的比较了，这是解决测试问题的捷径！
