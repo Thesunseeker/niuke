@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	
+	int fib1 = 0, fib2 = 1;
+	int n;
+	cin >> n;
+	while (n > fib2)
+	{
+		int f = fib1;
+		fib1 = fib2;
+		fib2 += f;
+	}
+	
+	cout << min(fib2 - n, n - fib1) << endl;
+	return 0;
+}
