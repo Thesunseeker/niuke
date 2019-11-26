@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Parenthesis 
+{
+public:
+	bool chkParenthesis(string A, int n)
+	{
+		int count1 = 0; 
+		int count2 = 0;
+		if (n % 2 == 0)
+		{
+			string::iterator begin = A.begin();
+			for (; begin != A.end(); begin++)
+			{
+				if (*begin == 40)
+				{
+					count1 += 1;
+				}
+				if (*begin == 41)
+				{
+					count2 += 1;
+				}
+			}
+			if (count1 == count2)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+};
+
+int main()
+{
+	Parenthesis s;
+	s.chkParenthesis("(())", 4);
+	return 0;
+}
