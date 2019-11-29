@@ -1,0 +1,30 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+
+int Ispernum(int n)
+{
+	int count = 0;
+	for (int i = 3; i <= n; i++)
+	{
+		int sum = 0;
+		for (int j = 1; j < i / 2 + 1; j++)
+		{
+			if (i % j == 0)
+				sum += j;
+		}
+		if (sum == i)
+			count++;
+	}
+	return count;
+}
+
+int main()
+{
+	int n;
+	while (cin >> n)
+	{
+		cout << Ispernum(n) << endl;
+	}
+}
