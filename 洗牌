@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int T, n, k;
+	cin >> T;
+	while (T--)
+	{
+		cin >> n >> k;
+		int max = 2 * n;
+		vector<int> v1(max);
+		for (int i = 0; i < max; ++i)
+			cin >> v1[i];
+		while (k--)
+		{
+			vector<int> v2(v1.begin(), v1.end());
+			for (int i = 0; i < n; ++i)
+			{
+				v1[2 * i] = v2[i];
+				v1[2 * i + 1] = v2[i + n];
+			}
+		}
+		for (int i = 0; i < max - 1; ++i)
+			cout << v1[i] << " ";
+		cout << v1[max -1] << endl;
+	}
+	return 0;
+}
