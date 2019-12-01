@@ -1,0 +1,87 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int num;
+	char str[100];
+	while (cin >> num >> str)
+	{
+		int top = 1;
+		int bottom = 4;
+		int r = 1;
+		int len = strlen(str);
+		if (num <= 4)
+		{
+			top = 1;
+			r = 1;
+			bottom = num;
+			for (int i = 0; i < len; i++)
+			{
+				if (str[i] == 'U')
+				{
+					if (r == 1)
+						r = num;
+					else
+						r--;
+				}
+				else
+				{
+					if (r == num)
+						r = 1;
+					else
+						r++;
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < len; i++)
+			{
+				if (str[i] == 'U')
+				{
+					if (r == 1)
+					{
+						r = num;
+						top = num - 3;
+						bottom = num;
+					}
+					else if (r == top)
+					{
+						r--;
+						top--;
+						bottom--;
+					}
+					else
+						r--;
+				}
+				else
+				{
+					if (r == num)
+					{
+						r = 1;
+						top = 1;
+						bottom = 4;
+					}
+					else if (r == bottom)
+					{
+						r++;
+						top++;
+						bottom++;
+					}
+					else
+						r++;
+				}
+			}
+		}
+		for (int i = top; i < bottom; i++)
+			cout << i << " ";
+		cout << bottom << endl;
+		cout << r << endl;
+	}
+	return 0;
+}
