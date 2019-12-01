@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
+int main(){
+
+	string str;
+	int i, j;
+	while (cin >> str)
+	{
+		int length = str.size();
+		int count;
+		int flag = 0;
+		for (i = 0; i<length; i++)
+		{
+			count = 0;
+			for (j = 0; j<length; j++)
+			{
+				if (str[i] == str[j])
+				{
+					count += 1;
+				}
+			}
+
+			if (count == 1)
+			{
+				//cout<<str[i]<<endl;
+				flag = 1;
+				break;
+			}
+		}
+		if (flag == 0)
+			cout << -1 << endl;
+		else
+			cout << str[i] << endl;
+
+	}
+
+	return 0;
+}
