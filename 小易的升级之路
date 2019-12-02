@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
+
+int get(int a, int b)
+{
+//求出最大公约数
+	if (b == 0)
+		return a;
+	return get(b, a % b);
+}
+
+int main()
+{
+	int act, num;
+	while (cin >> num >> act)
+	{
+		vector<int> v1(num);
+		int v2[10000];
+		for (size_t i = 0; i < num; i++)
+			cin >> v2[i];
+
+		for (size_t k = 0; k < num; k++)
+		{
+			if (act >= v2[k])
+			{
+				act += v2[k];
+			}
+			else
+			{
+				act += get(act, v2[k]);
+			}
+		}
+		cout << act << endl;
+	}
+	return 0;
+}
