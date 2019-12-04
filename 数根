@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int Getroot(int num)
+{
+	int number = 0;
+	if (num < 10)
+		return num;
+	while (num > 0)
+	{
+		number += num % 10;
+		num /= 10;
+	}
+	if (number >= 10)
+		number = Getroot(number);
+	return number;
+}
+
+int main()
+{
+	string num;
+	while (cin >> num)
+	{
+		int sum = 0;
+		for (auto i = num.begin(); i != num.end(); i++)
+			sum = sum + (*i) - '0';
+		sum = Getroot(sum);
+		cout << sum << endl;
+	}
+}
