@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	long double len;
+	long double r;
+	while (cin >> len >> r)
+	{
+		if (len > 2 * 3.14 * r)
+		{
+			cout << "NO" << endl;
+		}
+		else
+			cout << "YES" << endl;
+	}
+}
