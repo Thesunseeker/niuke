@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+	int n;
+	cin >> n;
+	while (n)
+	{
+		long long sum = (long long)pow(5.0, n*1.0) - 4;
+		int k = n;
+
+		long long laohouzi = (long long)pow(4.0, n*1.0) - 4 + n;
+
+		cout << sum << " " << laohouzi << endl;
+		cin >> n;
+	}
+	return 0;
+}
