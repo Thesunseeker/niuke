@@ -1,0 +1,10 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int len = nums.size();
+        reverse(nums.begin(),nums.end() - k%len);
+        reverse(nums.end() - k%len , nums.end());
+        reverse(nums.begin(), nums.end());
+    }
+};
+//三次旋转用于各种字符数组改变,也可用于洗牌之类的题
