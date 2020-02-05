@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        vector<int>::iterator itor = nums.begin();
+        int len = nums.size();
+        while(itor != nums.end())
+        {
+            if(*(itor) == val)
+            {
+                itor = nums.erase(itor);
+            }
+            else{
+                ++itor;
+            }
+        }
+        return nums.size();
+    }
+};
