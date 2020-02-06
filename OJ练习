@@ -1,0 +1,93 @@
+赎金信
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) 
+    {
+        int p[26] = {0};
+        for(int i = 0; i < magazine.length(); i++)
+        {
+            p[magazine[i] - 'a']++;
+        }
+        for(int i = 0; i < ransomNote.length(); i++)
+        {
+            if(--p[ransomNote[i]- 'a'] < 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+ 回文数
+ class Solution {
+public:
+    bool isPalindrome(int x) {
+        string s = to_string(x);
+        int len = s.length();
+        for(int i = 0; i < len; i++)
+        {
+            if(s[i] != s[len-1])
+                return false;
+            len -= 1;
+        }
+        return true; 
+    }
+};
+合并两个有序数组
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        for(auto i : nums2)
+        {
+            nums1[m] = i;
+            m++;
+        }
+        sort(nums1.begin(),nums1.end());
+    }
+};
+存在重复元素
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        int len = nums.size();
+        sort(nums.begin(),nums.end());
+        for(int i = 0 ; i<len - 1 ; i++)
+        {
+            if(nums[i] == nums[i+1])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+长按键入
+class Solution {
+public:
+    bool isLongPressedName(string name, string typed) {
+        int len = name.size();
+        int j = 0;
+        for(int i = 0 ; i < typed.size() ; i++)
+        {
+            if(typed[i] == name[j] && j < len)
+            {
+                j++;
+                continue;
+            }
+            else if(j > 0 && typed[i] == name[j-1])
+            {
+                continue;
+            }
+            else
+                return false;
+        }
+        if(j == len)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+};
