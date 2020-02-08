@@ -1,0 +1,69 @@
+ 寻找数组的中心索引
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int sum = 0, tmp = 0;
+        
+        for(int i = 0 ; i < nums.size(); ++i)
+            sum += nums[i];
+        for(int i =0 ; i < nums.size(); ++i)
+        {
+            if(sum - nums[i] == 2*tmp)
+                return i;
+            tmp += nums[i];
+        }
+        return -1;
+    }
+};
+按奇偶排序数组
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& A) {
+        int i = 0;
+        for(int k = 0; k < A.size(); ++k)
+        {
+            if(A[k]%2 == 0)
+                swap(A[i++],A[k]);
+        }
+        return A;
+    }
+};
+仅仅反转字母
+class Solution {
+public:
+    string reverseOnlyLetters(string S) {
+		int left = 0;
+		int right = S.size() - 1;
+		while (left < right)
+		{
+			if (!isalpha(S[left]))
+			{
+				++left;
+			}
+			else if (!isalpha(S[right])) 
+			{
+				--right;    
+			}
+			else
+			{
+				swap(S[left], S[right]);
+				++left;
+				--right;
+			}
+		}
+		return S;
+	}
+};
+有序数组的平方
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        int len = A.size();
+        for(int i = 0; i < len ; i++)
+        {
+            A[i] = A[i] * A[i];
+        }
+        sort(A.begin(),A.end());
+        return A;
+    }
+};
