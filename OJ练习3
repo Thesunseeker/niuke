@@ -1,0 +1,93 @@
+二进制求和
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string s;
+        while(a.length() < b.length()){
+            a = "0" + a;
+        }
+        while(b.length() < a.length()){
+            b = "0" + b;
+        }
+        int i=a.length()-1, j=b.length()-1;
+        int carry = 0;
+        while(i>=0 && j>=0){
+            int sum = carry;
+            sum += a[i] - '0';
+            sum += b[j] - '0';
+            if (sum == 0){
+                carry = 0;
+                s = "0" + s;
+            }else if(sum == 1){
+                carry = 0;
+                s = "1" + s;
+            }else if(sum == 2){
+                carry = 1;
+                s = "0" + s;
+            }else if(sum == 3){
+                carry = 1;
+                s = "1" + s;
+            }
+            i--;
+            j--;
+        }
+        if (carry == 1){
+            s = "1" + s;
+        }
+        return s;
+    }
+};
+两数之和
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int i,j ;
+        vector<int> s(2);
+        for(i = 0; i < nums.size(); i++)
+        {
+            for(j = i + 1; j < nums.size(); j++)
+            {
+                if(nums[i] + nums[j] == target)
+                {
+                    s.at(0) = i;
+                    s.at(1) = j;
+                    return s;
+                }
+            }
+        }           
+        return s;
+    }
+};
+第三大的数
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        set<int> s(nums.begin(),nums.end());
+        auto its = s.rbegin();
+        if(s.size() < 3)
+            return *its;
+        return *(++(++its));
+    }
+};
+加一
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int len = digits.size();
+        for(int i = len - 1; i >= 0; i--)
+        {
+            if(digits[i] == 9)
+            {
+                digits[i] = 0;
+            }
+            else
+            {
+                digits[i]++;
+                return digits;
+            }
+        }
+        digits.push_back(0);
+        digits[0] = 1;
+        return digits;
+    }
+};
