@@ -69,3 +69,22 @@ public:
         return sign > 0 ? result : -result;
     }
 };
+判断是否是回文数  包含空格
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string ss = "";
+        for(auto e : s)
+        {
+            if(isalnum(e))
+                ss += tolower(e);
+        }
+        for(int i =0 , j = ss.size() ; i < 2/j ; i++)
+        {
+            if(ss[i] != ss[j - 1 - i])
+                return false;
+            return true;
+        }
+        //return true;
+    }
+};
