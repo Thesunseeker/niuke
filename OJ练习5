@@ -1,0 +1,152 @@
+逆波兰表达式求值
+class Solution {
+public:
+    int StringToNum(string s)
+    {
+        int num ;
+        stringstream ss(s);
+        ss>>num;
+        return num;
+    }
+    int evalRPN(vector<string>& tokens) 
+    {
+        stack<int> s;
+        int ans;
+        int len = tokens.size();
+        if(tokens[0] != "+" && tokens[0] != "-" && tokens[0] != "*" && tokens[0] != "/") 
+            ans = StringToNum(tokens[0]);
+        for(int i = 0; i < len ; i++)
+        {
+            if(tokens[i] == "+")
+            {
+                int r = s.top();
+                s.pop();
+                int l = s.top();
+                s.pop();
+                ans = l + r;
+                s.push(ans);
+            }
+            else if(tokens[i] == "-")
+            {
+                int r = s.top();
+                s.pop();
+                int l = s.top();
+                s.pop();
+                ans = l - r;
+                s.push(ans);
+            }
+            else if(tokens[i] == "*")
+            {
+                int r = s.top();
+                s.pop();
+                int l = s.top();
+                s.pop();
+                ans = l * r;
+                s.push(ans);
+            }
+            else if(tokens[i] == "/")
+            {
+                int r = s.top();
+                s.pop();
+                int l = s.top();
+                s.pop();
+                ans = l / r;
+                s.push(ans);
+            }
+            else
+            {
+                int r = StringToNum(tokens[i]);
+                s.push(r);
+            }
+        }
+        return ans;
+    }
+};
+最短无序连续子数组
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        const int len = nums.size();
+        vector<int> cp = nums;
+        sort(cp.begin(),cp.end());
+        if(cp == nums)
+        {
+            return 0;
+        }
+        int left = 0, right = len - 1;
+        while(left < len && cp[left] == nums[left])
+        {
+            left++;
+        }
+        while(right >= 1 && cp[right] == nums[right])
+        {
+            right--;
+        }
+        return right - left +1;
+    }
+};
+压缩字符串
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        if(chars.size() <= 1)
+        {
+            return chars.size();
+        }
+        int j = 0;
+        chars[j] = chars[0];
+        int len = 1;
+        char temp = chars[0];
+        int n = 1;
+        for(int i = 1; i < chars.size() ; i++)
+        {
+            if(chars[i] == temp)
+            {
+                n++;
+            }
+            else if(chars[i] != temp && n > 1)
+            {
+                j++;
+                if(n < 10)
+                {
+                    chars[j++] = n + '0';
+                    len++;
+                }
+                else
+                {
+                    chars[j++] = n/10 + '0';
+                    len++;
+                    chars[j++] = n%10 + '0';
+                    len++;
+                }
+                n = 1;
+                temp = chars[i];
+                chars[j] = temp;
+                len++;
+            }
+            else if(chars[i] != temp && n == 1)
+            {
+                temp = chars[i];
+                chars[++j] = temp;
+                len++;
+            }
+            if(i == chars.size() - 1 && n > 1)
+            {
+                j++;
+                if(n < 10)
+                {
+                    chars[j++] = n + '0';
+                    len++;
+                }
+                else
+                {
+                    chars[j++] = n/10 + '0';
+                    len++;
+                    chars[j++] = n%10 + '0';
+                    len++;
+                }
+            }
+        }
+        return len;
+    }
+};
