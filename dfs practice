@@ -84,3 +84,54 @@ public:
         return image;
     }
 };
+
+
+岛屿的最大面积, https://leetcode-cn.com/problems/max-area-of-island/submissions/
+int nextPosition[4][2] = {{0,1} , {0,-1} , {1, 0} , {-1, 0} };
+class Solution {
+public:
+int result = 1;
+    void dfs(vector<vector<int>>& grid , int row , int col , vector<vector<int>> &book, int x , int y)
+    {
+        book[x][y] = 1;
+        for(int k = 0; k < 4 ; ++k)
+        {
+            int nX = x + nextPosition[k][0];
+            int nY = y + nextPosition[k][1];
+            if (nX >= row || nX < 0 || nY >= col || nY < 0)
+                continue;
+            if(grid[nX][nY] == 1 && book[nX][nY] == 0)
+            {
+                ++result;
+                dfs(grid,row , col , book , nX , nY);
+            }
+        }
+    }
+
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        if(grid.empty())
+            return 0;
+        int m = 0;
+        int row = grid.size();
+        int col = grid[0].size();
+
+        vector<vector<int>> book;
+        book.resize(row);
+        for(int i =0; i < row ; ++i)
+            book[i].resize(col,0);
+        
+        for(int i = 0; i < row ; i++)
+        {
+            for(int j = 0 ; j < col ; j++)
+            {
+                if(grid[i][j] == 1 && book[i][j] == 0)
+                {
+                    result = 1;
+                    dfs(grid, row , col , book , i , j);
+                     m = max(m,result);
+                }
+            }
+        }
+        return m;
+    }
+};
