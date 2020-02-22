@@ -31,6 +31,7 @@ public:
     }
 };
 单词接龙https://leetcode-cn.com/problems/word-ladder/submissions/
+最小基因变化:https://leetcode-cn.com/problems/minimum-genetic-mutation/
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
@@ -74,6 +75,7 @@ public:
     }
 };
 烂橘子https://leetcode-cn.com/problems/rotting-oranges/submissions/
+最小基因变化
 class Solution {
 public:
  int orangesRotting(vector<vector<int>>& grid) {
