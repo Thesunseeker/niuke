@@ -1,0 +1,91 @@
+分解因式
+#include<iostream>  
+#include<iomanip>
+  
+using namespace std;   
+int main()   
+{   
+   int n,i;
+   cin>>n;
+   cout << n << " = ";
+   for (i=2;i<=n;i++)
+     if (n%i==0) break;
+   cout<<i;
+   n=n/i;
+   for (;n!=1;)
+     {
+      for (i=2;i<=n;i++)
+        if (n%i==0) break;
+      cout<<" * "<<i;
+      n=n/i;
+      }
+    cout<<endl;
+   return 0;  
+} 
+美国节日
+#include <iostream>
+using namespace std;
+
+int weeken(int year,int month, int day)
+{
+    if(month == 1 || month == 2)
+    {
+        month += 12;
+        year -= 1;
+    }
+    int c = year/100;
+    year = year % 100;
+	int week = year + (year / 4) + (c / 4) - 2 * c + 26 * (month + 1) / 10 + day - 1;
+    week = (week % 7 + 7)%7;
+    if(week == 0)
+    {
+        week = 7;
+    }
+    return week;
+}
+
+int day(int year , int month , int count , int day_week)
+{
+    int week = weeken(year,month,1);
+    int day = 1 + (count - 1) * 7 + ((7 - week) + day_week) % 7;
+    return day;
+}
+
+void memorial_day(int year)
+{
+    int week = weeken(year,6,1);
+    int d = (week == 1) ? 6 : (week - 2);
+    int day = 31 - d;
+    printf("%d-05-%02d\n",year,day);
+}
+
+int main(void)
+{
+    int year;
+    while(cin >> year)
+    {
+        cout << year << "-01-01" << endl;
+        printf("%d-01-%02d\n", year, day(year, 1, 3, 1));
+        printf("%d-02-%02d\n", year, day(year, 2, 3, 1));
+        memorial_day(year);
+        cout << year << "-07-04" << endl;
+        printf("%d-09-%02d\n", year, day(year,9,1,1));
+        printf("%d-11-%02d\n", year, day(year,11,4,4));
+        cout << year << "-12-25" << endl<<endl;
+    }
+    return 0;
+}
+二进制插入
+有两个32位整数n和m，请编写算法将m的二进制数位插入到n的二进制的第j到第i位,
+其中二进制的位数从低位数到高位且以0开始。
+
+给定两个数int n和int m，同时给定int j和int i，意义如题所述，请返回操作后的数
+，保证n的第j到第i位均为零，且m的二进制位数小于等于i-j+1。
+class BinInsert {
+public:
+    int binInsert(int n, int m, int j, int i) {
+        // m左移j位
+        m <<= j;
+        return n | m;
+    }
+};
